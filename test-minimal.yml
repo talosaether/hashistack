@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  consul:
+    image: hashicorp/consul:1.17
+    container_name: consul-test
+    ports:
+      - "8510:8500"
+    command: consul agent -dev -client=0.0.0.0 -ui
+
+  vault:
+    image: hashicorp/vault:1.15
+    container_name: vault-test
+    ports:
+      - "8210:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=myroot
+    command: ["vault", "server", "-dev", "-dev-listen-address=0.0.0.0:8200", "-dev-root-token-id=myroot"]
+    cap_add:
+      - IPC_LOCK
+
+  slug-processor:
+    build:
+      context: ./slug-processor
+      dockerfile: Dockerfile
+    container_name: slug-processor-test
+    ports:
+      - "3010:3000"
+    environment:
+      - CONSUL_ADDR=http://consul:8500
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_TOKEN=myroot
+    depends_on:
+      - consul
+      - vault

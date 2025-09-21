@@ -1,0 +1,28 @@
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  consul:
+    endpoints:
+      - "consul:8500"
+    exposedByDefault: false
+  consulCatalog:
+    prefix: traefik
+    exposedByDefault: false
+    endpoints:
+      - "consul:8500"
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: admin@example.com
+      storage: acme.json
+      httpChallenge:
+        entryPoint: web

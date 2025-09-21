@@ -1,0 +1,17 @@
+github_repositories = [
+  {
+    slug         = "expressjs/express"
+    app_name     = "express-demo"
+    app_type     = "node"
+    port         = 3000
+    build_cmd    = "npm install"
+    start_cmd    = "npm start"
+  },
+  {
+    slug         = "pallets/flask"
+    app_name     = "flask-demo"
+    app_type     = "python"
+    port         = 5000
+    python_version = "3.11"
+  }
+]

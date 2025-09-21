@@ -1,0 +1,22 @@
+{
+  "name": "slug-processor",
+  "version": "1.0.0",
+  "description": "GitHub slug processor for HashiStack deployment",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "node-vault": "^0.10.2",
+    "simple-git": "^3.20.0",
+    "dockerode": "^4.0.0",
+    "yauzl": "^3.0.0",
+    "tar": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
