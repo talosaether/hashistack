@@ -1,4 +1,4 @@
-.PHONY: up down restart logs status deploy health vault-setup clean
+.PHONY: up down restart logs status deploy health vault-setup clean test test-unit test-integration test-infrastructure test-coverage
 
 up:
 	docker compose up -d
@@ -45,3 +45,18 @@ terraform-apply:
 clean:
 	docker compose down -v
 	docker system prune -f
+
+test:
+	./test-runner.js all
+
+test-unit:
+	./test-runner.js unit
+
+test-integration:
+	./test-runner.js integration
+
+test-infrastructure:
+	./test-runner.js infrastructure
+
+test-coverage:
+	./test-runner.js coverage
